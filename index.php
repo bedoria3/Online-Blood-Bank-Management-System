@@ -177,13 +177,13 @@
         if(isset($_POST['ok'])){
             include_once 'function.php';
             $obj=new Contact();
-            $data=$obj->contact_us($_POST);
+            $data=$obj->contact_usquery($_POST);
             if($data==true){
                 echo "<script>alert('Query successfully Submitted.Thank you')</script>";
             }else{
-                echo "<script>alert('Query successfully Submitted.Thank you')</script>";
+                echo "<script>alert('Invalid')</script>";
             }
-        }
+        }   
         ?>
 
             </div>
