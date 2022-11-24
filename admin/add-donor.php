@@ -1,50 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{ 
 
-if(isset($_POST['submit']))
-  {
-$fullname=$_POST['fullname'];
-$mobile=$_POST['mobileno'];
-$email=$_POST['emailid'];
-$age=$_POST['age'];
-$gender=$_POST['gender'];
-$blodgroup=$_POST['bloodgroup'];
-$address=$_POST['address'];
-$message=$_POST['message'];
-$status=1;
-$sql="INSERT INTO  tblblooddonars(FullName,MobileNumber,EmailId,Age,Gender,BloodGroup,Address,Message,status) VALUES(:fullname,:mobile,:email,:age,:gender,:blodgroup,:address,:message,:status)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':fullname',$fullname,PDO::PARAM_STR);
-$query->bindParam(':mobile',$mobile,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
-$query->bindParam(':age',$age,PDO::PARAM_STR);
-$query->bindParam(':gender',$gender,PDO::PARAM_STR);
-$query->bindParam(':blodgroup',$blodgroup,PDO::PARAM_STR);
-$query->bindParam(':address',$address,PDO::PARAM_STR);
-$query->bindParam(':message',$message,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Your info submitted successfully";
-}
-else 
-{
-$error="Something went wrong. Please try again";
-}
-
-}
-
-
-	?>
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -56,7 +10,7 @@ $error="Something went wrong. Please try again";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS| Admin Add Donor</title>
+	<title>Admin Add Donor</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -123,8 +77,8 @@ function isNumberKey(evt)
 							<div class="col-md-12">
 								<div class="panel panel-default">
 									<div class="panel-heading">Basic Info</div>
-<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+				<div class="errorWrap"><strong>ERROR</strong>: </div>
+				<div class="succWrap"><strong>SUCCESS</strong>: </div>
 
 									<div class="panel-body">
 <form method="post" class="form-horizontal" enctype="multipart/form-data">
@@ -165,17 +119,8 @@ function isNumberKey(evt)
 
 <select name="bloodgroup" class="form-control" required>
 <option value="">Select</option>
-<?php $sql = "SELECT * from  tblbloodgroup ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{				?>	
+
 <option value="<?php echo htmlentities($result->BloodGroup);?>"><?php echo htmlentities($result->BloodGroup);?></option>
-<?php }} ?>
 </select>
 
 </div>
@@ -232,9 +177,7 @@ foreach($results as $result)
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php ?>

@@ -1,13 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{
-	?>
+
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -19,7 +10,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS | Admin Dashboard</title>
+	<title>Admin Dashboard</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -57,17 +48,11 @@ else{
 								<div class="row">
 									<div class="col-md-4">
 										<div class="panel panel-default">
-											<div class="panel-body bk-primary text-light">
+											<div class="panel-body bk-primary text-light " style="background-color: #93c54b">
 												<div class="stat-panel text-center">
-<?php 
-$sql ="SELECT id from tblbloodgroup ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$bg=$query->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($bg);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Blood Groups</div>
+
+													<div class="stat-panel-number h1 "></div>
+													<div class="stat-panel-title text-uppercase" style= "color:white; ">Listed Blood Groups</div>
 												</div>
 											</div>
 											<a href="manage-bloodgroup.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
@@ -77,14 +62,8 @@ $bg=$query->rowCount();
 										<div class="panel panel-default">
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
-												<?php 
-$sql1 ="SELECT id from tblblooddonars ";
-$query1 = $dbh -> prepare($sql1);;
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$regbd=$query1->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($regbd);?></div>
+									
+													<div class="stat-panel-number h1 "></div>
 													<div class="stat-panel-title text-uppercase">Registered Blood Group</div>
 												</div>
 											</div>
@@ -95,14 +74,8 @@ $regbd=$query1->rowCount();
 										<div class="panel panel-default">
 											<div class="panel-body bk-info text-light">
 												<div class="stat-panel text-center">
-												<?php 
-$sql6 ="SELECT id from tblcontactusquery ";
-$query6 = $dbh -> prepare($sql6);;
-$query6->execute();
-$results6=$query6->fetchAll(PDO::FETCH_OBJ);
-$query=$query6->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($query);?></div>
+		
+													<div class="stat-panel-number h1 "></div>
 													<div class="stat-panel-title text-uppercase">Total Quries</div>
 												</div>
 											</div>
@@ -114,14 +87,8 @@ $query=$query6->rowCount();
 										<div class="panel panel-danger">
 											<div class="panel-body bk-info text-light">
 												<div class="stat-panel text-center">
-												<?php 
-$sql6 ="SELECT ID  from tblbloodrequirer ";
-$query6 = $dbh -> prepare($sql6);;
-$query6->execute();
-$results6=$query6->fetchAll(PDO::FETCH_OBJ);
-$totalreuqests=$query6->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($totalreuqests);?></div>
+
+													<div class="stat-panel-number h1 "></div>
 													<div class="stat-panel-title text-uppercase">Total Blood Request Received</div>
 												</div>
 											</div>
@@ -167,8 +134,6 @@ $totalreuqests=$query6->rowCount();
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 	
 	<script>
@@ -196,4 +161,3 @@ $totalreuqests=$query6->rowCount();
 	</script>
 </body>
 </html>
-<?php } ?>

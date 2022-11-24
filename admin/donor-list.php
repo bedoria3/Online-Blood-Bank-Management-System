@@ -1,52 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{
-if(isset($_REQUEST['hidden']))
-	{
-$eid=intval($_GET['hidden']);
-$status="0";
-$sql = "UPDATE tblblooddonars SET Status=:status WHERE  id=:eid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
-$query -> execute();
 
-$msg="Donor details hidden Successfully";
-}
-
-
-if(isset($_REQUEST['public']))
-	{
-$aeid=intval($_GET['public']);
-$status=1;
-
-$sql = "UPDATE tblblooddonars SET Status=:status WHERE  id=:aeid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
-$query -> execute();
-
-$msg="Donor details public";
-}
-//Code for Deletion
-if(isset($_REQUEST['del']))
-	{
-$did=intval($_GET['del']);
-$sql = "delete from tblblooddonars WHERE  id=:did";
-$query = $dbh->prepare($sql);
-$query-> bindParam(':did',$did, PDO::PARAM_STR);
-$query -> execute();
-
-$msg="Record deleted Successfully ";
-}
-
- ?>
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -116,8 +68,9 @@ $msg="Record deleted Successfully ";
 							<div class="panel-heading">Donors Info</div>
 								<a href="download-records.php" style="font-size:16px;" class="btn btn-info">Download Donor List</a>
 							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+							
+							<div class="errorWrap"><strong>ERROR</strong>:</div>
+							<div class="succWrap"><strong>SUCCESS</strong>: </div>
 			
 
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -151,15 +104,6 @@ $msg="Record deleted Successfully ";
 									</tfoot>
 									<tbody>
 
-<?php $sql = "SELECT * from  tblblooddonars ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{				?>	
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->FullName);?></td>
@@ -185,7 +129,7 @@ foreach($results as $result)
 </td>
 
 										</tr>
-										<?php $cnt=$cnt+1; }} ?>
+									
 										
 									</tbody>
 								</table>
@@ -211,9 +155,7 @@ foreach($results as $result)
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php  ?>

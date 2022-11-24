@@ -1,32 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{
-// Code for change password	
-if(isset($_POST['submit']))
-  {
-    $adminid=$_SESSION['alogin'];
-    $AName=$_POST['adminname'];
-  $mobno=$_POST['mobilenumber'];
-  $email=$_POST['email'];
-  $sql="update tbladmin set AdminName=:adminname,MobileNumber=:mobilenumber,Email=:email where UserName=:aid";
-     $query = $dbh->prepare($sql);
-     $query->bindParam(':adminname',$AName,PDO::PARAM_STR);
-     $query->bindParam(':email',$email,PDO::PARAM_STR);
-     $query->bindParam(':mobilenumber',$mobno,PDO::PARAM_STR);
-     $query->bindParam(':aid',$adminid,PDO::PARAM_STR);
-$query->execute();
 
-    echo '<script>alert("Your profile has been updated")</script>';
-    echo "<script>window.location.href ='profile.php'</script>";
-
-  }
-?>
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -100,18 +72,7 @@ $query->execute();
 										<form method="post" class="form-horizontal" onSubmit="return valid();">
 										
 											
-  	        	 <?php
-
-$sql="SELECT * from  tbladmin";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-											
+						
 											<div class="hr-dashed"></div>
 											
 											<div class="form-group">
@@ -151,7 +112,7 @@ foreach($results as $row)
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
-											<?php $cnt=$cnt+1;}} ?>
+											
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 								
@@ -184,11 +145,9 @@ foreach($results as $row)
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 
 </body>
 
 </html>
-<?php } ?>
+<?php ?>

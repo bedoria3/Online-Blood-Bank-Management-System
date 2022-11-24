@@ -1,33 +1,3 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{
-// Code for change password	
-if(isset($_POST['submit']))
-{
-$bloodgroup=$_POST['bloodgroup'];
-$sql="INSERT INTO  tblbloodgroup(BloodGroup) VALUES(:bloodgroup)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':bloodgroup',$bloodgroup,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Blood Group Created successfully";
-}
-else 
-{
-$error="Something went wrong. Please try again";
-}
-
-}
-?>
-
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -39,7 +9,7 @@ $error="Something went wrong. Please try again";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS | Admin add-bloodgroup</title>
+	<title>Admin add-bloodgroup</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -98,9 +68,10 @@ $error="Something went wrong. Please try again";
 									<div class="panel-body">
 										<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
 										
-											
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+																			
+												<!-- <div class="errorWrap"><strong>ERROR</strong>:</div>
+												<div class="succWrap"><strong>SUCCESS</strong>:</div> -->
+												
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Blood Group</label>
 												<div class="col-sm-8">
@@ -144,11 +115,10 @@ $error="Something went wrong. Please try again";
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 
 </body>
 
 </html>
-<?php } ?>
+<?php ?>
+<!-- } -->
