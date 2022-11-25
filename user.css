@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 *{
   margin: 0;
@@ -31,6 +32,7 @@ body{
   background: white;
   padding: 30px 0px;
   position: fixed;
+  margin-top: 84px;
 }
 
 .wrapper .sidebar ul li{
@@ -64,7 +66,8 @@ img{
 
 .wrapper .main_content{
   width: 100%;
-  margin-left: 250px;
+  margin-left: 200px;
+  margin-top: 6%;
 }
 
 .wrapper .main_content .info{
@@ -86,4 +89,246 @@ img{
   .social_media{
     display: none !important;
   }
+}
+
+.hehe{
+    background-color: red;
+}
+
+.design{
+    height:650px; 
+    width:550px; 
+    margin:auto; 
+    margin-top:120px; 
+    margin-left: 37%;
+    margin-bottom:10px; 
+    background-color:white; 
+    border:2px solid red; 
+    box-shadow:4px 1px 20px black;
+}
+.form_holder{ max-width:500px; margin:0 auto;}
+.doner_area_holder label{ text-align:left; font-weight:bold; font-size:15px; display:block; margin-top: 10px;}
+.doner_area_holder input,
+.doner_area_holder select,
+.doner_area_holder textarea{ display:block; width:100%; border:2px solid #CCC; padding:10px 20px; margin-bottom:20px; margin-top: 10px;}
+.doner_area_holder input[type="submit"]{ background-color:red; color:#fff; border-color:lightgrey; cursor:pointer;}
+
+
+
+table{margin: 0 auto; margin-top:50px;}
+
+
+/* LOGIN & REGISTRATION CSS */
+.container{
+  min-height: 100vh;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  padding:20px;
+  padding-bottom: 60px;
+}
+
+.container .content{
+  text-align: center;
+}
+
+.container .content h3{
+  font-size: 30px;
+  color:#333;
+}
+
+.container .content h3 span{
+  background: crimson;
+  color:#fff;
+  border-radius: 5px;
+  padding:0 15px;
+}
+
+.container .content h1{
+  font-size: 50px;
+  color:#333;
+}
+
+.container .content h1 span{
+  color:crimson;
+}
+
+.container .content p{
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.container .content .btn{
+  display: inline-block;
+  padding:10px 30px;
+  font-size: 20px;
+  background: #333;
+  color:#fff;
+  margin:0 5px;
+  text-transform: capitalize;
+}
+
+.container .content .btn:hover{
+  background: crimson;
+}
+
+.form-container{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:20px;
+  padding-bottom: 60px;
+  background-image: url('lood.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+}
+
+.form-container form{
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.4); 
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+}
+
+.form-container form h3{
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color:white;
+}
+
+.form-container form input,
+.form-container form select{
+  width: 100%;
+  padding:10px 15px;
+  font-size: 17px;
+  margin:8px 0;
+  background: white;
+  border-radius: 5px;
+}
+
+.form-container form select option{
+  background: #fff;
+}
+
+.form-container form .form-btn{
+  background: white;
+  color:red;
+  text-transform: capitalize;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.form-container form .form-btn:hover{
+  background: red;
+  color:#fff;
+}
+
+.form-container form p{
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.form-container form p a{
+  color:crimson;
+}
+
+.form-container form .error-msg{
+  margin:10px 0;
+  display: block;
+  background: crimson;
+  color:#fff;
+  border-radius: 5px;
+  font-size: 20px;
+  padding:10px;
+}
+
+.footer{
+
+  background-color: red;
+
+  height: 50vh;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.footer .socmed{
+
+  height: 80%;
+
+  width: 40%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-right: 3px solid #D9D9D9;
+
+  
+
+}
+
+.footer .socmed i{
+
+  margin-left: 2%;
+
+  font-size: 2.5rem;
+
+  color: white;
+
+}
+
+.footer .footer-text{
+
+  height: 100%;
+
+  width: 40%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.footer .footer-text p{
+
+  font-size: 1.4rem;
+
+  color: #fff;
+
+}
+
+.footer .footer-text span{
+
+  font-size: 1.6rem;
+
+  color: #fff;
+
+  font-weight: 700;
+
 }
