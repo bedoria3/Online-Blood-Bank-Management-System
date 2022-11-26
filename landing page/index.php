@@ -11,7 +11,7 @@
     <!-- font awesome cdn link  -->
     <script src="https://kit.fontawesome.com/515e3f1675.js" crossorigin="anonymous"></script>
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
