@@ -119,7 +119,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Total Listed camps</div>
-            <div class="number">0</div>
+            <div class="number"><?php echo $conn->query("SELECT * FROM camps")->num_rows ?></div>
             <div class="indicator">
             <i  class='bx bxs-ambulance'></i>
 
