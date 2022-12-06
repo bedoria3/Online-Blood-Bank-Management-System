@@ -1,38 +1,9 @@
-<!-- <?php 
-ob_start();
-session_start();
-
-require_once('includes/db_connect.inc');
-$message = "";
-
-if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
-  $get_user_list = "select * from manage_blood";
-  $result_query= mysqli_query($conn,$get_user_list);
-  if(mysqli_query_num_rows($result_query)> 0){
-    $results = mysqli_fetch_all($result_query,MYSQLI_ASSOC);
-
-  }
-  else{
-    $message= "No users found";
-  }
-
-
-}else{
-  session_unset();
-  // header("Refresh: 0.5; url=login.php");
-
-}
-
-?> -->
-
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="../admin.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +19,17 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
+  input[type=date], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
   input[type=submit] {
     width: 50%;
     background-color: #4CAF50;
@@ -60,15 +41,6 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     cursor: pointer;
   }
 
-  input[type=date], select {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
   
   
   input[type=submit]:hover {
@@ -81,10 +53,6 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     padding: 20px;
   }
 
-  form{
-    
-
-  }
 
    </style>
 <body>
@@ -95,20 +63,20 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     </div>
       <ul class="nav-links" >
         <li>
-          <a href="./admin_dashboard.php" >
+          <a href="../admin_dashboard.php" >
             <i class='bx bx-grid-alt'  style= "color:red;"></i>
             <span class="links_name"  style= "color:red;">Dashboard</span>
           </a>
         </li>
         <li >
-          <a href="./manageblood.php" >
+          <a href="../manageblood.php" class= "active" >
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
 
         </li>
         <li>
-          <a href="#"  class="active">
+          <a href="../managedonor.html" >
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
           </a>
@@ -145,38 +113,44 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Add Donor</span>
+        <span class="dashboard" id="ok">Edit Blood Details</span>
       </div>
 
       <div class="profile-details">
         <span class="admin_name">Ma. Elena</span>
         <i class='bx bx-chevron-down' ></i>
       </div>
-    </nav> <br><br> <br> 
+    </nav> <br><br> <br> <br><br>
+    
 
-    <div id= "sample">
-  <form action="/action_page.php" style= "margin-left: 30%;">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="birthday">Birthday</label>
-    <input type="date" id="birthday" name="birthday">
-
-    <label for="lname">Weight</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="lname">Contact</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="lname">BloodType</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-  
-    <input type="submit" value="Submit">
-  </form>
 </div>
+</form>
+
+</div>
+
+<?php
+
+ob_start();
+session_start();
+
+require_once('../includes/db_connect.inc');
+
+    $btype = $_POST["btype"];    
+    $cdate= $_POST["cdate"];
+    $descrip= $_POST["desc"];
+    $id=$_POST['id'];
+//update query
+$qry = "update blooddetails set BloodType='$btype', creationdate='$cdate', description='$descrip' where id='$id'";
+$result = mysqli_query($conn,$qry); //query executes
+if($result){
+  echo "<script>alert('Successfully Editted')</script>";
+    
+  header("refresh: 0; url= ../manageblood.php");
+}else {
+    echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='../admin_dashboard.php'> DASHBOARD </a></h3>";
+
+}
+?>
 
   </section>
 

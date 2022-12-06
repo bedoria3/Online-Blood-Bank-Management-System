@@ -1,32 +1,18 @@
-<!-- <?php 
+<?php
+
 ob_start();
 session_start();
 
-require_once('includes/db_connect.inc');
-$message = "";
+require_once('./includes/db_connect.inc');
 
-if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
-  $get_user_list = "select * from manage_blood";
-  $result_query= mysqli_query($conn,$get_user_list);
-  if(mysqli_query_num_rows($result_query)> 0){
-    $results = mysqli_fetch_all($result_query,MYSQLI_ASSOC);
-
-  }
-  else{
-    $message= "No users found";
-  }
-
+if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
 
 }else{
   session_unset();
-  // header("Refresh: 0.5; url=login.php");
-
+  header("Refresh: 0.2; url=./admin_login.php");
 }
 
-?> -->
-
-
-
+?>
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -35,9 +21,26 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <link rel="stylesheet" href="./admin.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Manage Donor</title>
    </head>
+   <style>
+  .buton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+   </style>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
     <div class="logo-details">
@@ -65,7 +68,7 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="./managecquery.php">
             <i class='bx bx-pie-chart-alt-2' style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage ContactUs <br> Query</span>
           </a>
@@ -98,13 +101,63 @@ if (isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard" id="ok">Manage Donor</span>
       </div>
-
       <div class="profile-details">
-        <span class="admin_name">Ma. Elena</span>
-        <i class='bx bx-chevron-down' ></i>
-      </div>
+        <span class="admin_name"> <?php echo $_SESSION["username"]; ?></span>
+        <div class="dropdown">
+              <button style="margin-left:100%;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="./logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
+              </ul>
+            </div>
+        </div>
     </nav>
 
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Add Donor</div>
+            <a href="addFunctions/add_donor.php" class="button">Click Me</a>
+            <div class="indicator">
+
+            </div>
+          </div>
+          <!-- <i class='bx bx-cart-alt cart'></i> -->
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Edit Donor</div>
+            <a href="editFunctions/edit_donor.php" class="button">Click Me</a>
+            <div class="indicator">
+
+            </div>
+          </div>
+          <!-- <i class='bx bxs-cart-add cart two' ></i> -->
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">View Donor</div>
+            <center> <a href="View Functions/view_donor.php" class="button">Click Me</a></center>  
+            <div class="indicator">
+            </div>
+          </div>
+
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Remove Donor</div>
+         <center> <a href="removeFunctions/remove_donor.php" class="button">Click Me</a></center>  
+         </div> 
+            <div class="indicator">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div >
+        <img style="width: 40%; margin-top: 30px; margin-left: 50%" src="userimages/blood-removebg-preview.png" alt="">
+      </div>
 
 
   </section>

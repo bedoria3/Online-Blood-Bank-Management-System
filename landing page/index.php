@@ -65,19 +65,23 @@
             </div>
             <div class="text">
                 <div class="text-container">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis aut, in magnam dolore velit 
-                        enim hic pariatur delectus corrupti, ea nemo sit, fugit perferendis debitis? Quibusdam itaque
-                         beatae aspernatur reprehenderit impedit quisquam earum nesciunt repudiandae repellendus explicabo 
-                         dolores esse, vitae nobis rerum deserunt ipsa distinctio veritatis. Excepturi ipsam ad reiciendis.</p>
+                    <p>Blood banks indeed play an important role in the process of collecting blood as well as
+                         other procedures such as managing blood stocks, approving blood requests, updating donations,
+                          and updating available blood types. Blood banks typically manage their operations using a
+                           manual system. They use a manual process to keep track of blood donors, recipients, blood
+                            donation programs, and blood stocks. This manual management system is vulnerable to problems,
+                             particularly in managing donor records, and it may be unsafe due to human errors and
+                              disasters. It is also inconvenient for those in need of blood to manually search for and
+                               match donors in an emergency.</p>
                 </div>
-            </div>
+            </div> <br>
 
             <div class="cards">
                 <div class="card1">
                     <h1>Our Company</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non suscipit quisquam beatae
-                         consectetur laborum incidunt unde neque quos facilis sit? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus, nam veniam. Quis et eveniet 
-                         sapiente eligendi aperiam laudantium. Adipisci, pariatur?</p>
+                    <p> We, the young inventors created a system which is Blood 
+                                Management System that would help to address this problem and this system would serve as
+                                 an online process for any blood transaction.</p>
                 </div>
                 <div class="card2">
                     <h1>Who we are?</h1>
@@ -112,10 +116,9 @@
         <div class="row">
 
             <div class="col-lg-8 col-lg-offset-2">
-
                 <h1>Contact Us</h1>
 
-                <form id="contact-form" method="post" role="form">
+                <form id="contact-form" action="./contact.php" method="post" role="form">
 
                     <div class="messages"></div>
 
@@ -173,18 +176,6 @@
                     </div>
 
                 </form>
-       <?php 
-        if(isset($_POST['ok'])){
-            include_once 'function.php';
-            $obj=new Contact();
-            $data=$obj->contact_usquery($_POST);
-            if($data==true){
-                echo "<script>alert('Query successfully Submitted.Thank you')</script>";
-            }else{
-                echo "<script>alert('Invalid')</script>";
-            }
-        }   
-        ?>
 
             </div>
 

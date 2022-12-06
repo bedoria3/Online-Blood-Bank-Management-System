@@ -13,8 +13,6 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
 }
 
 ?>
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -22,14 +20,12 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./admin.css">
     <!-- Boxicons CDN Link -->
-    
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Manage Blood</title>
+     <title>Admin Dashboard</title>
    </head>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
@@ -45,11 +41,10 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="./manageblood.php">
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
-
 
         </li>
         <li>
@@ -57,10 +52,9 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
           </a>
-          
         </li>
         <li>
-          <a href="./managecquery.php">
+          <a href="#" class="active">
             <i class='bx bx-pie-chart-alt-2' style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage ContactUs <br> Query</span>
           </a>
@@ -91,7 +85,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Manage Quiries</span>
       </div>
 
       <div class="profile-details">
@@ -104,64 +98,54 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
               </ul>
             </div>
         </div>
+            
 
-    </nav> <br><br><br><br> <br><br>
-    <div class="forms" style="margin-left:60%">
-     
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+    </nav> <br><br><br><br><br> <br> <br><br>
+    
 
-    </div>
- <br>
- 
-    <center>  <section>
-
+<center><section>
 <?php
 
-require_once('./includes/db_connect.inc');
 
-$qry="select * from blooddetails";
+$qry="select * from contact_us";
 $result=mysqli_query($conn,$qry);
 
 
-echo"<table border='2'>
+echo"<table border='2'    >
 <tr>
-<th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
+<th>ID</th>
+<th>firstname</th>
+<th>Lastname</th>
+<th>email</th>
+<th>Mobile Phone</th>
+<th>message</th>
+<th>Action</th>
 </tr>";
 
 while($row=mysqli_fetch_array($result)){
 echo"<tr>
 <td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
-
-
-
-
-
-
+<td>".$row['firstname']."</td>
+<td>".$row['lastname']."</td>
+<td>".$row['email']."</td>
+<td>".$row['phone']."</td>
+<td>".$row['message']."</td>
+<td><a href='./removecquery.php?id=".$row['id']."'>REMOVE</a></td>
 
 </tr>";
 }
 
 ?>
+
 </section></center>
+
+
+
 
 
   </section>
 
-
-
-
-
-
-<script>
+  <script>
    let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".sidebarBtn");
 sidebarBtn.onclick = function() {

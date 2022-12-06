@@ -23,10 +23,6 @@ body{
     scroll-behavior: smooth;
 }
 
-section {
-  /* padding: 3rem 9%; */
-}
-
 .btn {
   display: inline-block;
   margin-top: 1rem;

@@ -1,3 +1,18 @@
+<?php
+
+ob_start();
+session_start();
+
+require_once('./includes/db_connect.inc');
+
+if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
+
+}else{
+  session_unset();
+  header("Refresh: 0.2; url=./admin_login.php");
+}
+
+?>
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -6,6 +21,9 @@
     <link rel="stylesheet" href="./admin.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Admin Dashboard</title>
    </head>
@@ -33,10 +51,11 @@
           <a href="./managedonor.php">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
+            
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="./managecquery.php">
             <i class='bx bx-pie-chart-alt-2' style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage ContactUs <br> Query</span>
           </a>
@@ -71,55 +90,62 @@
       </div>
 
       <div class="profile-details">
-        <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name">Ma. Elena</span>
-        <i class='bx bx-chevron-down' ></i>
-      </div>
+        <span class="admin_name"> <?php echo $_SESSION["username"]; ?></span>
+        <div class="dropdown">
+              <button style="margin-left:100%;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="./logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
+              </ul>
+            </div>
+        </div>
+            
+
     </nav>
 
     <div class="home-content">
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Listed Blood Groups</div>
-            <div class="number">0</div>
+            <div class="box-topic">Total Donors</div>
+            <div class="number"><?php echo $conn->query("SELECT * FROM donations_file")->num_rows ?></div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
+            <i class='bx bx-donate-blood'></i>
 
             </div>
           </div>
-          <i class='bx bx-cart-alt cart'></i>
+          <i style="font-size:10rem; color:red;"class='bx bxs-donate-blood' ></i>
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Registered Blood Group</div>
+            <div class="box-topic">Total Listed camps</div>
             <div class="number">0</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
+            <i  class='bx bxs-ambulance'></i>
 
             </div>
           </div>
-          <i class='bx bxs-cart-add cart two' ></i>
+          <i style="font-size:10rem; color:red;"  class='bx bxs-ambulance'></i>
         </div>
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Total Quiries</div>
-            <div class="number">0</div>
+            <div class="number"><?php echo $conn->query("SELECT * FROM contact_us")->num_rows ?></div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
+            <i class='bx bxs-message-square-dots' ></i>
             </div>
           </div>
-          <i class='bx bx-cart cart three' ></i>
+          <i style="font-size:9rem; color:red;" class='bx bxs-message-square-dots' ></i>
         </div>
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Total Blood Request</div>
-            <div class="number">0</div>
+            <div class="number"><?php echo $conn->query("SELECT * FROM requestblood")->num_rows ?></div>
             <div class="indicator">
-              <i class='bx bx-down-arrow-alt down'></i>
+            <i class='bx bxs-band-aid'></i>
             </div>
           </div>
-          <i class='bx bxs-cart-download cart four' ></i>
+          <i style="font-size:10rem; color:red;"  class='bx bxs-band-aid'></i>
         </div>
       </div>
 
