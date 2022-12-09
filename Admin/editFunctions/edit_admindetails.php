@@ -1,36 +1,60 @@
-<?php
-
-ob_start();
-session_start();
-
-require_once('./includes/db_connect.inc');
-
-if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
-
-}else{
-  session_unset();
-  header("Refresh: 0.2; url=./admin_login.php");
-}
-
-?>
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="../admin.css">
     <!-- Boxicons CDN Link -->
-    
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Manage Blood</title>
+     <title>Manage Donor</title>
    </head>
+   <style>
+  input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=date], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 50%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  #sample {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+
+   </style>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
     <div class="logo-details">
@@ -39,46 +63,44 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     </div>
       <ul class="nav-links" >
         <li>
-          <a href="./admin_dashboard.php" >
+          <a href="../admin_dashboard.php" >
             <i class='bx bx-grid-alt'  style= "color:red;"></i>
             <span class="links_name"  style= "color:red;">Dashboard</span>
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="../manageblood.php" class= "active" >
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
 
-
         </li>
         <li>
-          <a href="./managedonor.php">
+          <a href="../managedonor.php" >
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
           </a>
-          
         </li>
         <li>
-          <a href="./managecquery.php">
+          <a href="../managecquery.php">
             <i class='bx bx-pie-chart-alt-2' style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage ContactUs <br> Query</span>
           </a>
         </li>
         <li>
-          <a href="./manageadmin.php">
+          <a href="../manageadmin.php" class= "active">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
         </li>
         <li>
-          <a href="./managestock.php">
+          <a href=".../managestock.php">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
         </li>
         <li>
-          <a href="./managecamps.php">
+          <a href="../managecamps.php">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
@@ -86,7 +108,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <li>
         <a href="./managerequest.php">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
-            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+            <span class="links_name"  style= "color:red;">Manage Blood <br>Request</span>
           </a>
           
         </li>
@@ -97,68 +119,53 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Edit Admin</span>
       </div>
 
-      <div class="profile-details">
-        <span class="admin_name"> <?php echo $_SESSION["username"]; ?></span>
-        <div class="dropdown">
-              <button style="margin-left:100%;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="./logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
-              </ul>
-            </div>
-        </div>
+        
+    </nav> <br><br> <br> <br><br>
 
-    </nav> <br><br><br><br> <br><br>
-    <div class="forms" style="margin-left:60%">
-     
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+    <?php
 
-    </div>
- <br>
- 
-    <center>  <section>
+ob_start();
+session_start();
+    
+require_once('../includes/db_connect.inc');
 
-<?php
-
-require_once('./includes/db_connect.inc');
-
-$qry="select * from blooddetails";
+$id=$_GET['admin_id'];
+$qry= "select * from admin_file where admin_id='$id'";
 $result=mysqli_query($conn,$qry);
-
-
-echo"<table border='2'>
-<tr>
-<th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
-</tr>";
-
 while($row=mysqli_fetch_array($result)){
-echo"<tr>
-<td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
 
+    
+?>                  
 
+    <div id= "sample">
+    <form action ="editedadmin.php" method = "post" style= "margin-left: 30%;">
+    <label for="fname">First Name</label>
+    <input type="text" id="btype" name="firstname" placeholder="Input your firstname..." value='<?php echo $row['firstname']; ?>' required>
+    <label for="fname">Last Name</label>
+    <input type="text" id="btype" name="lastname" placeholder="Input your lastname..." value='<?php echo $row['lastname']; ?>' required>
+    <label for="fname">Username</label>
+    <input type="text" id="btype" name="username" placeholder="Input your username..." value='<?php echo $row['username']; ?>' required>
+    <label for="fname">Email</label>
+    <input type="text" id="btype" name="email" placeholder="Input your email..." value='<?php echo $row['email']; ?>' required>
+    <label for="fname">Password</label>
+    <input type="text" id="btype" name="password" placeholder="Input your password..." value='<?php echo $row['password']; ?>'required>
+  
+    <input type="hidden" name="admin_id" value="<?php echo $row['admin_id'];?>" 
 
+<div > <br>
+<input type="submit" value="Submit">
 
-
-
-
-</tr>";
+  <?php
 }
-
 ?>
-</section></center>
 
+</div>
+</form>
+
+</div>
 
   </section>
 

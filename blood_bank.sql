@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2022 at 12:14 PM
+-- Generation Time: Dec 09, 2022 at 10:05 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -62,8 +62,7 @@ CREATE TABLE `blooddetails` (
 --
 
 INSERT INTO `blooddetails` (`id`, `BloodType`, `creationdate`, `description`) VALUES
-(7, 's', '2022-12-16', 'hi'),
-(16, 'O-', '2022-12-08', 'hhasdghsgdudyudysvbdhvhgsyd');
+(16, 'O-', '2022-12-08', 'dnANMDnsd nSBDHJabd');
 
 -- --------------------------------------------------------
 
@@ -167,7 +166,9 @@ CREATE TABLE `blood_o_plus` (
 INSERT INTO `blood_o_plus` (`blood_id`, `blood_quantity`) VALUES
 (1, '1'),
 (2, '1'),
-(3, '1');
+(3, '1'),
+(18, '12'),
+(19, '13');
 
 -- --------------------------------------------------------
 
@@ -188,8 +189,8 @@ CREATE TABLE `camps` (
 --
 
 INSERT INTO `camps` (`id`, `hospital`, `address`, `contact`, `email`) VALUES
-(1, 'Cebu City Medical Center (CCMC)', 'N. Bacalso Ave., Barangay Pahina Central\r\nCebu City 6000', '(032) 512 4622', 'cebucitymedicalcenterofficial@yahoo.com'),
-(2, 'Cebu Doctor\'s University Hospital', 'Osmena Boulevard, Capitol Site, Cebu City 6000 Cebu ', '+63 (32) 255 5555', 'info@cduh.com.ph'),
+(1, 'Cebu City Medical Center (CCMC)', 'N. Bacalso Ave., Barangay Pahina CentralCebu City 6000', '(032) 512 4622', 'cebucitymedicalcenterofficial@yahoo.com'),
+(2, 'Cebu Doctor', 'Osmena Boulevard, Capitol Site, Cebu City 6000 Cebu ', '+63 (32) 255 5555', 'info@cduh.com.ph'),
 (3, 'North General Hospital', 'Kauswagan Road, Talamban, Cebu City 6000 Cebu', '+63 (32) 343 7777', 'cebunorthgeneralhospital@yahoo.com'),
 (4, 'South General Hospital', 'Natalio B. Bacalso S National Hwy, City of Naga, 6037 Cebu ', '(32) 272-2020', 'sgh_naga@yahoo.com'),
 (5, 'Sacred Heart Hospital', '53 J. Urgello St, Cebu City, 6000 Cebu ', '(32)254-1841', 'eulama@yahoo.com'),
@@ -225,7 +226,8 @@ CREATE TABLE `cebu_medical_center` (
 
 INSERT INTO `cebu_medical_center` (`id`, `type_blood`, `quantity`) VALUES
 (1, 'A+', '3'),
-(2, 'O+', '1');
+(2, 'O+', '1'),
+(18, 'O+', '12');
 
 -- --------------------------------------------------------
 
@@ -272,13 +274,7 @@ CREATE TABLE `donations_file` (
 --
 
 INSERT INTO `donations_file` (`donation_ID`, `donor_name`, `gender`, `age`, `mobile_phone`, `address`, `blood_type`, `blood_quantity`, `camps`) VALUES
-(3, 'rgggfg', 'Male', 34, '577878787', 'dffgfcvbvbfv', 'A+', 6, 'Cebu City Medical Center'),
-(4, 'joshua', 'Female', 56, '5667678', 'cvfvvffg', 'O+', 1, 'Cebu City Medical Center'),
-(5, '', '', 0, '', '', '', 0, ''),
-(11, 'xzxzx', 'xzxz', 34, '34', 'tretre', '4', 4, 'ff'),
-(12, 'dfdf', 'ff', 2323, '3232', 'dfdf', 'fsdf', 34, 'fdsf'),
-(13, 'sdsd', 'csc', 3, '34', 'fsdf', '3', 434, 'df'),
-(14, 'sdasd', 'dasd', 434, '45455', 'ff', '43', 5, 'dgfgf');
+(16, 'lenay', 'female', 12, '09224223089', 'Nabunturan Barili Cebu', 'O+', 10, 'CEBUDOC');
 
 -- --------------------------------------------------------
 
@@ -308,20 +304,21 @@ CREATE TABLE `requestblood` (
   `quantity` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `require_date` varchar(50) NOT NULL,
-  `detail` varchar(50) NOT NULL
+  `detail` varchar(50) NOT NULL,
+  `status` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requestblood`
 --
 
-INSERT INTO `requestblood` (`request_id`, `name`, `gender`, `age`, `mobile_number`, `blood_group`, `quantity`, `email`, `require_date`, `detail`) VALUES
-(9, 'Grace Vellina', 'female', 22, '09675464678', 'AB+', '', 'marygracevellina@gmail.com', '2000/1/7', 'na'),
-(10, 'Hannah Cagaan', 'female', 20, '09767546467', 'AB+', '', 'hannahcagaanan@gmail.com', '2021/1/1', 'na'),
-(11, 'Joan Bernadez', 'female', 21, '09565456774', 'AB+', '', 'joan@gmail.com', '2022/1/1', 'na'),
-(12, 'Julcenio Estorco', 'male', 22, '09364374567', 'AB+', '', 'juls@gmail.com', '2000/1/1', 'na'),
-(13, 'Hannah Cagaan', 'male', 4, '0945575777', 'AB+', '2 bags', 'joy@gmail.com', '1998/1/1', 'na'),
-(14, 'Juan De La Cruz', 'male', 34, '09876543545', 'AB+', '3 bags', 'juan@gmail.com', '2024/1/9', 'na');
+INSERT INTO `requestblood` (`request_id`, `name`, `gender`, `age`, `mobile_number`, `blood_group`, `quantity`, `email`, `require_date`, `detail`, `status`) VALUES
+(9, 'Grace Vellina', 'female', 22, '09675464678', 'AB+', '', 'marygracevellina@gmail.com', '2000/1/7', 'na', 'Accepted'),
+(10, 'Hannah Cagaan', 'female', 20, '09767546467', 'AB+', '', 'hannahcagaanan@gmail.com', '2021/1/1', 'na', 'Accepted'),
+(11, 'Joan Bernadez', 'female', 21, '09565456774', 'AB+', '', 'joan@gmail.com', '2022/1/1', 'na', 'Accepted'),
+(12, 'Julcenio Estorco', 'male', 22, '09364374567', 'AB+', '', 'juls@gmail.com', '2000/1/1', 'na', 'Accepted'),
+(13, 'Hannah Cagaan', 'male', 4, '0945575777', 'AB+', '2 bags', 'joy@gmail.com', '1998/1/1', 'na', 'Rejected'),
+(14, 'Juan De La Cruz', 'male', 34, '09876543545', 'AB+', '3 bags', 'juan@gmail.com', '2024/1/9', 'na', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -346,6 +343,13 @@ CREATE TABLE `south_general_hospital` (
   `blood_type` varchar(255) NOT NULL,
   `blood_quantity` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `south_general_hospital`
+--
+
+INSERT INTO `south_general_hospital` (`id`, `blood_type`, `blood_quantity`) VALUES
+(17, '', '');
 
 -- --------------------------------------------------------
 
@@ -415,6 +419,13 @@ CREATE TABLE `vicente_sotto_hospital` (
   `blood_type` varchar(255) NOT NULL,
   `blood_quantity` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vicente_sotto_hospital`
+--
+
+INSERT INTO `vicente_sotto_hospital` (`id`, `blood_type`, `blood_quantity`) VALUES
+(19, 'O+', '13');
 
 --
 -- Indexes for dumped tables
@@ -615,7 +626,7 @@ ALTER TABLE `blood_o_minus`
 -- AUTO_INCREMENT for table `blood_o_plus`
 --
 ALTER TABLE `blood_o_plus`
-  MODIFY `blood_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `blood_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `camps`
@@ -633,7 +644,7 @@ ALTER TABLE `cebu_doctor_hospital`
 -- AUTO_INCREMENT for table `cebu_medical_center`
 --
 ALTER TABLE `cebu_medical_center`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -645,7 +656,7 @@ ALTER TABLE `contact_us`
 -- AUTO_INCREMENT for table `donations_file`
 --
 ALTER TABLE `donations_file`
-  MODIFY `donation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `donation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `north_general_hospital`
@@ -669,7 +680,7 @@ ALTER TABLE `sacred_heart_hospital`
 -- AUTO_INCREMENT for table `south_general_hospital`
 --
 ALTER TABLE `south_general_hospital`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_info`
@@ -681,7 +692,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `vicente_sotto_hospital`
 --
 ALTER TABLE `vicente_sotto_hospital`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

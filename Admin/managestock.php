@@ -13,8 +13,6 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
 }
 
 ?>
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -22,15 +20,32 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./admin.css">
     <!-- Boxicons CDN Link -->
-    
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Manage Blood</title>
+     <title>Manage Stocks</title>
    </head>
+   <style>
+  .buton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.donation{
+  width: 90%;
+   margin-top: 30px; 
+   margin-left: 40%;
+}
+   </style>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
     <div class="logo-details">
@@ -45,19 +60,17 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="./manageblood.php" >
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
 
-
         </li>
         <li>
-          <a href="./managedonor.php">
+          <a href="managedonor.php"  >
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
           </a>
-          
         </li>
         <li>
           <a href="./managecquery.php">
@@ -72,7 +85,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-          <a href="./managestock.php">
+          <a href="managestock.php" class="active">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
@@ -86,7 +99,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <li>
         <a href="./managerequest.php">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
-            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+            <span class="links_name"  style= "color:red;">Manage Blood <br> Request</span>
           </a>
           
         </li>
@@ -97,9 +110,8 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Manage Stocks</span>
       </div>
-
       <div class="profile-details">
         <span class="admin_name"> <?php echo $_SESSION["username"]; ?></span>
         <div class="dropdown">
@@ -110,54 +122,24 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
               </ul>
             </div>
         </div>
+    </nav>
 
-    </nav> <br><br><br><br> <br><br>
-    <div class="forms" style="margin-left:60%">
-     
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+    <div class="home-content">
+      <div style="width: 60%;margin-left:200px"class="overview-boxes">
+        <div style="width: 300px;border:solid red 2px" class="box" >
+          <div class="right-side">
+          <img style="width:70px;margin-left:20px ;border-radius:20px"class="logo" src="userimages/view.png" alt="">
+            <div class="box-topic">View Stock</div>
+            <center> <a href="View Functions/view_stock.php" class="button">Click Me</a></center>  
+            <div class="indicator">
+            </div>
+          </div>
 
-    </div>
- <br>
- 
-    <center>  <section>
+        </div>
 
-<?php
-
-require_once('./includes/db_connect.inc');
-
-$qry="select * from blooddetails";
-$result=mysqli_query($conn,$qry);
-
-
-echo"<table border='2'>
-<tr>
-<th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
-</tr>";
-
-while($row=mysqli_fetch_array($result)){
-echo"<tr>
-<td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
-
-
-
-
-
-
-
-</tr>";
-}
-
-?>
-</section></center>
+      <div >
+        <img class="donation" src="userimages/donation.png" alt="">
+      </div>
 
 
   </section>

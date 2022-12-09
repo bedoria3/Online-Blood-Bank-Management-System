@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -12,18 +10,50 @@
      <title>Manage Donor</title>
    </head>
    <style>
-  .buton {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+  input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=date], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 50%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  #sample {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+
    </style>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
@@ -39,14 +69,14 @@
           </a>
         </li>
         <li >
-          <a href="../manageblood.php" >
+          <a href="../manageblood.php" class= "active" >
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
 
         </li>
         <li>
-          <a href="../managedonor.php"  class="active">
+          <a href="../managedonor.html" >
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
             <span class="links_name"  style= "color:red;">Manage Donor</span>
           </a>
@@ -58,24 +88,30 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../manageadmin.php">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managestock.php">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managecamps.php"  class= "active">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
         </li>
         <li>
+        <a href="./managerequest.php">
+            <i class='bx bx-list-ul'  style= "color:red;" ></i>
+            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+          </a>
+          
+        </li>
       
       </ul>
   </div>
@@ -83,47 +119,45 @@
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Donor</span>
+        <span class="dashboard" id="ok">Edit Blood Details</span>
       </div>
 
-    </nav> <br><br><br> <br><br>
-    
+      <div class="profile-details">
+        <span class="admin_name">Ma. Elena</span>
+        <i class='bx bx-chevron-down' ></i>
+      </div>
+    </nav> <br><br> <br> <br><br>
     
 
-    <?php 
+</div>
+</form>
+
+</div>
+
+<?php
+
 ob_start();
 session_start();
 
 require_once('../includes/db_connect.inc');
 
-    $name = $_POST["firstname"];    
-    $gender = $_POST["gender"];
-    $age = $_POST["age"];
-    $contact = $_POST["number"];
-    $address = $_POST["address"];
-    $bloodtype = $_POST["bloodtype"];
-    $bloodqty = $_POST["blood"];
-    $camps = $_POST["camps"];
-
-$qry = "insert into donations_file (donor_name,gender,age,mobile_phone,address,blood_type,blood_quantity,camps) values ('$name','$gender','$age','$contact','$address','$bloodtype', '$bloodqty','$camps')";
-$result = mysqli_query($conn,$qry); 
-
+$hospital = $_POST["hospital"];    
+$address= $_POST["address"];
+$contact= $_POST["contact"];
+$email= $_POST["email"];
+    $id=$_POST['id'];
+//update query
+$qry = "update camps set hospital='$hospital', address='$address', contact='$contact' , email='$email' where id='$id'";
+$result = mysqli_query($conn,$qry); //query executes
 if($result){
-  echo "<script>alert('Added Successfully')</script>";
+  echo "<script>alert('Successfully Editted')</script>";
     
-  header("refresh: 0; url= ../managedonor.php");
+  header("refresh: 0; url= ../managecamps.php");
 }else {
     echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='../admin_dashboard.php'> DASHBOARD </a></h3>";
 
 }
-
-
-
 ?>
-       <div >
-        <img style="width: 40%;  margin-left: 50%; padding-top:10px;"  src="https://i.ibb.co/KDVqZX9/blood-removebg-preview.png" alt="">
-      </div>
-
 
   </section>
 
@@ -146,6 +180,4 @@ sidebarBtn.onclick = function() {
 
 </body>
 </html>
-
-
 

@@ -60,24 +60,30 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="./manageadmin.php">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="./managestock.php">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="./managecamps.php">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
         </li>
         <li>
+        <a href="./managerequest.php">
+            <i class='bx bx-list-ul'  style= "color:red;" ></i>
+            <span class="links_name"  style= "color:red;">Manage Blood <br>Request</span>
+          </a>
+          
+        </li>
       
       </ul>
   </div>

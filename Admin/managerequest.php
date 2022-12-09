@@ -2,16 +2,12 @@
 
 ob_start();
 session_start();
-
 require_once('./includes/db_connect.inc');
 
-if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
-
-}else{
-  session_unset();
-  header("Refresh: 0.2; url=./admin_login.php");
+if(!isset($_SESSION["username"])){
+  header("Location: ./admin_dashboard.php");
 }
-
+else{
 ?>
 
 
@@ -29,7 +25,25 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Manage Blood</title>
+     <title>Manage Blood Request</title>
+         <style>
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            padding-top: 1em;
+        }
+
+        .mycontainer {
+            width: 90%;
+            margin: 1.5rem auto;
+            min-height: 60vh;
+        }
+
+        .mycontainer table {
+            margin: 1.5rem auto;
+        }
+    </style>
    </head>
 <body>
   <div class="sidebar" style="  background-color: #DDD7D7;">
@@ -45,7 +59,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="./manageblood.php">
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
@@ -84,9 +98,9 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-        <a href="./managerequest.php">
+        <a href="#" class= "active">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
-            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+            <span class="links_name"  style= "color:red;">Manage Blood <br> Request</span>
           </a>
           
         </li>
@@ -97,7 +111,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Manage Blood Request</span>
       </div>
 
       <div class="profile-details">
@@ -111,54 +125,76 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
             </div>
         </div>
 
-    </nav> <br><br><br><br> <br><br>
-    <div class="forms" style="margin-left:60%">
+    </nav> <br><br><br><br><br><br><br><br>
+    <div class="forms" style="margin-left:80%">
      
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+     <a   href="./View Functions/viewhistory.php" class="button">View Request History</a>
 
-    </div>
- <br>
+</div>
  
     <center>  <section>
 
-<?php
 
-require_once('./includes/db_connect.inc');
-
-$qry="select * from blooddetails";
-$result=mysqli_query($conn,$qry);
-
-
-echo"<table border='2'>
-<tr>
-<th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
-</tr>";
-
-while($row=mysqli_fetch_array($result)){
-echo"<tr>
-<td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
-
-
-
-
-
-
-
-</tr>";
-}
-
-?>
 </section></center>
+    <div class="mycontainer">
 
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <th>ID</th>
+        <th>name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Mobile Number</th>
+        <th>Blood Group</th>
+        <th>Quantity</th>
+        <th>Email</th>
+        <th>Require Date</th>
+        <th>Details</th>
+        <th>Actions</th>
+                   
+                </thead>
+                <tbody>
+                      
+                        <?php
+                        
+
+                                $query = mysqli_query($conn,"SELECT * FROM requestblood WHERE status='Pending'");
+                                
+                                $numrow = mysqli_num_rows($query);
+
+                               if($query){
+                                    
+                                    if($numrow!=0){
+
+                                          while($row = mysqli_fetch_assoc($query)){
+                                    
+                                            echo "<tr>
+                                                  
+                                                    <td>".$row['request_id']."</td>
+                                                    <td>".$row['name']."</td>
+                                                    <td>".$row['gender']."</td>
+                                                    <td>".$row['age']."</td>
+                                                    <td>".$row['mobile_number']."</td>
+                                                    <td>".$row['blood_group']."</td>
+                                                    <td>".$row['quantity']."</td>
+                                                    <td>".$row['email']."</td>
+                                                    <td>".$row['require_date']."</td>
+                                                    <td>".$row['detail']."</td>                                                   
+                    
+                                                    <td><a href=\"approved.php?request_id={$row['request_id']}&detail={$row['detail']}\"><button class='btn-success btn-sm' >Accept</button></a>
+                                                    <a href=\"reject.php?request_id={$row['request_id']}&detail={$row['detail']}\"><button class='btn-danger btn-sm' >Reject</button></a></td>
+                                                   </tr>";  
+ }       
+                                    }
+                                }
+                                else{
+                                    echo "Query Error";
+                                }
+                       ?> 
+                    
+                </tbody>
+            </table>
+    </div>
 
   </section>
 
@@ -181,4 +217,7 @@ sidebarBtn.onclick = function() {
 
 </body>
 </html>
+<?php
+}
 
+?>

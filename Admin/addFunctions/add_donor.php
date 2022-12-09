@@ -1,4 +1,149 @@
-<!DOCTYPE html>
+<?php
+   ob_start();
+   session_start();
+   include_once('../includes/db_connect.inc');
+   
+//    if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])
+//    && !empty($_SESSION['username'])){
+//        session_unset();
+//        header("Refresh: 0.5; url=login.php");
+
+//    }
+   if (isset($_POST['submit'])) {   
+   
+       $name = $_POST["firstname"];
+       $gender = $_POST["gender"];
+       $age = $_POST["age"];
+       $phone = $_POST["number"];
+       $address = $_POST["address"];
+       $blood_type = $_POST["bloodtype"];
+       $blood_quantity = $_POST["blood"];
+       $camps = $_POST["camps"];
+       
+
+      
+        $query = "INSERT into `donations_file` (donor_name,gender,age, mobile_phone, address, blood_type, blood_quantity, camps) VALUES('$name','$gender','$age','$phone','$address', '$blood_type', '$blood_quantity', '$camps' )";
+        $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+        $id = mysqli_insert_id($conn);
+        if ( $blood_type == 'O+') {
+            $query = "INSERT into `blood_o_plus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+    
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'A+') {
+            $query = "INSERT into `blood_a_plus` (blood_id, blood_quantity) VALUES('$id', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'B+') {
+            $query = "INSERT into `blood_b_plus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'AB+') {
+            $query = "INSERT into `blood_ab_plus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'O-') {
+            $query = "INSERT into `blood_o_minus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'A-') {
+            $query = "INSERT into `blood_a_minus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'B-') {
+            $query = "INSERT into `blood_b_minus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $blood_type == 'AB-') {
+            $query = "INSERT into `blood_ab_minus` (blood_id, blood_quantity) VALUES('$id','$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+//    CAMPS QUERIES
+        if ( $camps == 'Cebu City Medical Center') {
+            $query = "INSERT into `cebu_medical_center` (id, type_blood,quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $camps == 'CEBUDOC') {
+            $query = "INSERT into `cebu_doctor_hospital` (id, blood_type,blood_quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error  in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $camps == 'SOTTO') {
+            $query = "INSERT into `vicente_sotto_hospital` (id, blood_type,blood_quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $camps == 'NORTHGEN') {
+            $query = "INSERT into `north_general_hospital` (id, blood_type,blood_quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $camps == 'SOUTHGEN') {
+            $query = "INSERT into `south_general_hospital` (id, blood_type,blood_quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+        if ( $camps == 'SACRED') {
+            $query = "INSERT into `sacred_heart_hospital` (id, blood_type,blood_quantity) VALUES('$id','$blood_type', '$blood_quantity')";
+            $result = mysqli_query($conn, $query) or die("Error in adding account: " . mysqli_error($conn));
+            echo "<script>alert('Successfully Added')</script>";
+            header("refresh: 0; url= ../managedonor.php");
+        } else {
+            $message ="<p>Not added in the database</p>";
+        }
+     
+    } else
+
+    ?>
+  <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
   <head>
@@ -88,24 +233,30 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../manageadmin.php">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managestock.php">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managecamps.php">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
         </li>
         <li>
+        <a href="./managerequest.php">
+            <i class='bx bx-list-ul'  style= "color:red;" ></i>
+            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+          </a>
+          
+        </li>
       
       </ul>
   </div>
@@ -119,7 +270,7 @@
     </nav> <br><br> <br> 
 
     <div id= "sample">
-  <form action = "./add_donor-function.php" method = "post" style= "margin-left: 30%;">
+  <form action = "" method = "post" style= "margin-left: 30%;">
     <label for="fname">Donor Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
 
@@ -135,20 +286,38 @@
     <label for="lname">Address</label>
     <input type="text" id="address" name="address" placeholder="Your Address.." required>
 
-    <label for="lname">BloodType</label>
-    <input type="text" id="bloodtype" name="bloodtype" placeholder="Your bloodtype.." required>
+    <!-- <label for="lname">BloodType</label>
+    <input type="text" id="bloodtype" name="bloodtype" placeholder="Your bloodtype.." required> -->
+    
+    <label>BloodType<select name="bloodtype"  required></label>
+                                        <option >Select Blood Group</option>
+                                        <option value="O+">O+</option>
+                                        <option value="A+">A+</option>
+                                        <option value="B+">B+</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB-">AB-</option>
+                                        </select>
 
     <label for="lname">BloodQuantity</label>
     <input type="number" id="blood" name="blood" required>
     
-    <label for="lname">Camps</label>
-    <input type="text" id="camps" name="camps" required>
+    <!-- <label for="lname">Camps</label>
+    <input type="text" id="camps" name="camps" required> -->
+    <label>Camps<select name="camps"  required></label>
+    <option>Select Camps</option>
+                                        <option value="Cebu City Medical Center">Cebu City Medical Center</option>
+                                        <option value="CEBUDOC">Cebu Doctor's University Hospital</option>
+                                        <option value="SOTTO">Vicente Sotto Memorial Medical Center</option>
+                                        <option value="NORTHGEN">North General Hospital</option>
+                                        <option value="SOUTHGEN">South General Hospital</option>
+                                        <option value="SACRED">Sacred Heart Hospital</option>
 
   
-    <input type="submit" value="Submit">
-    <!-- <div >
-        <img style="width: 40%;  margin-left: 50%; padding-top:10px;"  src="https://i.ibb.co/KDVqZX9/blood-removebg-preview.png" alt="">
-      </div> -->
+    <input type="submit" name= "submit" value="Submit">
+
 
   </form>
   

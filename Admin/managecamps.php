@@ -45,7 +45,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="./manageblood.php">
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
@@ -78,7 +78,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-          <a href="./managecamps.php">
+          <a href="#" class="active">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
@@ -86,7 +86,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <li>
         <a href="./managerequest.php">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
-            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+            <span class="links_name"  style= "color:red;">Manage Blood <br>Request</span>
           </a>
           
         </li>
@@ -97,7 +97,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Manage Camps</span>
       </div>
 
       <div class="profile-details">
@@ -114,8 +114,8 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     </nav> <br><br><br><br> <br><br>
     <div class="forms" style="margin-left:60%">
      
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+            <a  href="addFunctions/addcamps.php" class="button">Add Camps</a>
+            <a   href="removeFunctions/remove_camps.php" class="button">Remove Camps</a>
 
     </div>
  <br>
@@ -126,26 +126,27 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
 
 require_once('./includes/db_connect.inc');
 
-$qry="select * from blooddetails";
+$qry="select * from camps";
 $result=mysqli_query($conn,$qry);
 
 
 echo"<table border='2'>
 <tr>
 <th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
+<th>Hospital</th>
+<th>Address</th>
+<th>Contact</th>
+<th>Email</th>
 </tr>";
 
 while($row=mysqli_fetch_array($result)){
 echo"<tr>
 <td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
+<td>".$row['hospital']."</td>
+<td>".$row['address']."</td>
+<td>".$row['contact']."</td>
+<td>".$row['email']."</td>
+<td><a href='editFunctions/edit_campdetails.php?id=".$row['id']."'>EDIT</a></td>
 
 
 

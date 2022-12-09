@@ -45,7 +45,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li >
-          <a href="#" class="active">
+          <a href="./manageblood.php" >
             <i class='bx bx-box'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Blood Group</span>
           </a>
@@ -66,7 +66,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
           </a>
         </li>
         <li>
-          <a href="./manageadmin.php">
+          <a href="#" class="active">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
@@ -86,7 +86,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
         <li>
         <a href="./managerequest.php">
             <i class='bx bx-list-ul'  style= "color:red;" ></i>
-            <span class="links_name"  style= "color:red;">Manage Blood<br> Request</span>
+            <span class="links_name"  style= "color:red;">Manage Blood <br> Request</span>
           </a>
           
         </li>
@@ -97,7 +97,7 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     <nav style= "background-color:red;">
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard" id="ok">Manage Blood Group</span>
+        <span class="dashboard" id="ok">Manage Admin</span>
       </div>
 
       <div class="profile-details">
@@ -114,8 +114,8 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
     </nav> <br><br><br><br> <br><br>
     <div class="forms" style="margin-left:60%">
      
-            <a  href="addFunctions/addbloods.php" class="button">Add Blood Type</a>
-            <a   href="removeFunctions/remove_blood.php" class="button">Remove Blood Type</a>
+            <a  href="addFunctions/addadmin.php" class="button">Add Admin</a>
+            <a   href="removeFunctions/remove_admin.php" class="button">Remove Admin</a>
 
     </div>
  <br>
@@ -126,31 +126,29 @@ if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])){
 
 require_once('./includes/db_connect.inc');
 
-$qry="select * from blooddetails";
+$qry="select * from admin_file";
 $result=mysqli_query($conn,$qry);
 
 
 echo"<table border='2'>
 <tr>
-<th >Id</th>
-<th>BloodType</th>
-<th>Creation Date</th>
-<th>Blood Description</th>
-<th>Actions</th>
+<th>Id</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Username</th>
+<th>Email</th>
+<th>Password</th>
 </tr>";
 
 while($row=mysqli_fetch_array($result)){
-echo"<tr>
-<td>".$row['id']."</td>
-<td>".$row['BloodType']."</td>
-<td>".$row['creationdate']."</td>
-<td>".$row['description']."</td>
-<td><a href='editFunctions/edit_blooddetails.php?id=".$row['id']."'>EDIT</a></td>
-
-
-
-
-
+echo"<tr> 
+<td>".$row['admin_id']."</td>
+<td>".$row['firstname']."</td>
+<td>".$row['lastname']."</td>
+<td>".$row['username']."</td>
+<td>".$row['email']."</td>
+<td>".$row['password']."</td>
+<td><a href='editFunctions/edit_admindetails.php?admin_id=".$row['admin_id']."'>EDIT</a></td>
 
 
 </tr>";

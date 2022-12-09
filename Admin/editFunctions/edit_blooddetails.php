@@ -88,24 +88,30 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../manageadmin.php">
             <i class='bx bx-coin-stack'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Admins</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managestock.php">
             <i class='bx bx-book-alt'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Stocks</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="../managecamps.php">
             <i class='bx bx-user'  style= "color:red;"></i>
             <span class="links_name" style= "color:red;">Manage Camps</span>
           </a>
         </li>
         <li>
+        <a href="./managerequest.php">
+            <i class='bx bx-list-ul'  style= "color:red;" ></i>
+            <span class="links_name"  style= "color:red;">Manage Blood <br>Request</span>
+          </a>
+          
+        </li>
       
       </ul>
   </div>
@@ -136,8 +142,18 @@ while($row=mysqli_fetch_array($result)){
 
     <div id= "sample">
   <form action = "editedblood.php" method = "post" style= "margin-left: 30%;">
-    <label for="fname">BloodType</label>
-    <input type="text" id="btype" name="btype" placeholder="Your bloodtype.." value='<?php echo $row['BloodType']; ?>' required>
+
+    <label>BloodType<select name="btype"  required></label>
+                                        <option value='<?php echo $row['BloodType']; ?>'>Select Blood Group</option>
+                                        <option value="O+">O+</option>
+                                        <option value="A+">A+</option>
+                                        <option value="B+">B+</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB-">AB-</option>
+                                        </select>
 
     <label for="calendar">Creation Date</label>
     <input type="date"  name="cdate" placeholder="creation Date.."  value='<?php echo $row['creationdate']; ?>' required>
