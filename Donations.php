@@ -3,11 +3,6 @@
    session_start();
    include_once('./includes/db_connect.inc');
    
-//    if(isset($_SESSION['logged_in']) && isset($_SESSION['username'])
-//    && !empty($_SESSION['username'])){
-//        session_unset();
-//        header("Refresh: 0.5; url=login.php");
-//    }
    if (isset($_POST['submit'])) {   
    
        $name = $_POST["name"];

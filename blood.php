@@ -25,8 +25,8 @@ $result = mysqli_query($conn, $get_query_in_the_database);
 
         table {
             background-color: white;
-            margin-left: 250px;
             font-size: large;
+            padding: 10px;
             border: 1px solid black;
         }
 
@@ -92,7 +92,7 @@ $result = mysqli_query($conn, $get_query_in_the_database);
                 <a href="blood.php" class="active">
                     <img style="width:30px;margin-left:20px ;border-radius:20px" class="logo" src="userimages/blood.png"
                         alt="">
-                    <span class="links_name" style="color:red;margin-left:10px">Blood details</span>
+                    <span class="links_name" style="color:red;margin-left:10px">Blood Details</span>
                 </a>
             </li>
             <li>
