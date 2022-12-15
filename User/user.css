@@ -1,0 +1,303 @@
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 60px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+
+
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+
+/* home_css */
+.donate{
+    width: 30%;
+    margin-left: 65%;
+    margin-top: -80px;
+}
+
+.info{
+  font-size: 3vw; 
+  line-height: 25px;
+}
+
+/* donation_css */
+/* .design {
+  height: 800px;
+  width: 550px;
+  margin: auto;
+  margin-top: 120px;
+  margin-left: 35%;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 2px solid red;
+  box-shadow: 4px 1px 20px black;
+} */
+
+.form_holder {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.doner_area_holder label {
+  text-align: left;
+  font-weight: bold;
+  font-size: 15px;
+  display: block;
+  margin-top: 10px;
+}
+
+.doner_area_holder input,
+.doner_area_holder select,
+.doner_area_holder textarea {
+  display: block;
+  width: 100%;
+  border: 2px solid #CCC;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.doner_area_holder input[type="submit"] {
+  background-color: red;
+  color: #fff;
+  border-color: lightgrey;
+  cursor: pointer;
+}
+
+/* logas_login_register_CSS */
+.form-container{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:20px;
+  padding-bottom: 60px;
+  background-image: url('./userimages/lood.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+}
+
+.form-container form{
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.4); 
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 30%;
+  padding: 20px;
+  text-align: left;
+}
+
+.form-container form h3{
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color:white; 
+}
+
+.form-container form input,
+.form-container form select{
+  width: 100%;
+  padding:10px 15px;
+  margin:8px 0;
+  background: white;
+  border-radius: 5px;
+}
+
+.form-container form select option{
+  background: #fff;
+}
+
+.form-container form .form-btn{
+  background: white;
+  color:red;
+  text-transform: capitalize;
+  font-weight: bolder;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-container form .form-btn:hover{
+  background: red;
+  color:#fff;
+}
+
+.form-container form p{
+  margin-top: 10px;
+  font-size: 14px;
+  color: white;
+
+    cursor: pointer;
+   
+}
+
+.form-container form p a{
+  color:white;
+  text-decoration: underline;
+}
+ /* send_css */
+
+
+ .field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.container{
+  padding-top:50px;
+  margin: auto;
+}
