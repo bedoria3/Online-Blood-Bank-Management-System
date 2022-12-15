@@ -1,0 +1,358 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* text-transform: capitalize; */
+  text-decoration: none;
+  outline: none;
+  border: none;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body{
+    scroll-behavior: smooth;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  background: #e9edfb;
+  color: #224bcf;
+  cursor: pointer;
+  border-radius: .5rem;
+  font-size: 1.7rem;
+}
+img{
+    width: 100px;
+
+}
+
+.btn:hover {
+  color: #fff;
+  background: #224bcf;
+}
+
+.heading {
+  background: url(../images/heading-bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.heading h3 {
+  font-size: 3.5rem;
+  color: #302851;
+}
+
+.heading p {
+  font-size: 1.6rem;
+  color: #666;
+  padding-top: .5rem;
+}
+
+.heading p a {
+  padding-right: .5rem;
+  color: #fa1d86;
+}
+
+.heading p a:hover {
+  color: #224bcf;
+}
+
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 9%;
+  background: #FF0000;
+}
+
+span{
+    color: #FF0000;
+    font-size: 3rem;
+    font-weight: 600;
+}
+.header .logo i {
+  color: #fa1d86;
+}
+
+.header .navbar ul {
+  list-style: none;
+}
+
+.header .navbar ul li {
+  position: relative;
+  float: left;
+}
+
+.header .navbar ul li:hover ul {
+  display: block;
+}
+
+.header .navbar ul li a {
+  padding: 2rem;
+  display: block;
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.header .navbar ul li a:hover {
+  background: #fa1d86;
+}
+
+.header .navbar ul li ul {
+  position: absolute;
+  left: 0;
+  width: 20rem;
+  background: #224bcf;
+  display: none;
+}
+
+.header .navbar ul li ul li {
+  width: 100%;
+}
+
+#menu-btn {
+  cursor: pointer;
+  color: #fff;
+  font-size: 2.5rem;
+  display: none;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.home .image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 42rem;
+          flex: 1 1 42rem;
+          margin-top: 5rem;
+}
+
+.home .image img {
+  width: 100%;
+}
+
+.home .content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 42rem;
+          flex: 1 1 42rem;
+          margin-top: 5rem;
+}
+
+.home .content h3 {
+  color: #302851;
+  font-size: 5rem;
+}
+
+.home .content p {
+  font-size: 2rem;
+  color: #666;
+  padding: 1rem 0;
+  line-height: 2.5;
+}
+
+/* >>>>>>>>>>>>>>>>> About Section <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+.about{
+    margin-top: 2rem;
+}
+.about .container{
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    align-items: center;   
+}
+
+.about .container .about-details{
+    width: 75%;
+    height: 100vh;
+    background-color: #D9D9D9;
+    display: flex;
+    margin-left: 3%;
+    flex-direction: column;
+    margin-top: 12rem;
+    
+
+}
+.about-details .text-title{
+    height: 10vh;
+    width: 100%;
+    background-color: #FF0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.about-details .text-title h1{
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: white;
+
+
+}
+.about-details .text{
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-details .text .text-container{
+    width: 90%;
+    height: 90%;
+}
+.about-details .text .text-container p{
+    font-size: 1.5rem;
+    color: black;
+    text-align: justify;
+}
+.about-details .cards{
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.about-details .cards .card1,
+.about-details .cards .card2,
+.about-details .cards .card3{
+    height: 60vh;
+    width: 30%;
+    background-color: #fff;
+
+}
+.about-details .cards h1{
+    font-size: 2rem;
+    padding-top: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+}
+.about-details .cards p{
+    font-size: 1.4rem;
+    padding: 1rem 2.5rem;
+    text-align: justify;
+}
+.about .image-container{
+    background-image: url(./images/blood-removebg-preview.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    width: 30%;
+    margin-left: -5%;
+    margin-top: 25%;
+}
+
+/* Contact Us Css */
+
+
+h1{
+  margin-bottom: 40px;
+  text-align: center;
+}
+label {
+  color: #333;
+}
+.btn-send {
+  font-weight: 300;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+#contact{
+  margin-top: 10rem ;
+  height: 120vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#contact .container{
+  margin-top: 6rem;
+  width: 50%;
+  height: 90vh;
+  background-color: transparent;
+  box-shadow: 5px 5px 20px 0 rgba(85, 88, 88, 0.9);
+
+}
+#contact .for-image{
+  background-image: url(./images/image\ 1.png);
+  height: 63vh;
+  width: 40%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.footer{
+  background-color: red;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .socmed{
+  height: 80%;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 3px solid #D9D9D9;
+  
+}
+.footer .socmed i{
+  margin-left: 2%;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.footer .footer-text{
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer .footer-text p{
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.footer .footer-text span{
+  font-size: 1.6rem;
+  color: #fff;
+  font-weight: 700;
+}
+
